@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Smart Pantry Manager</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="sign_in">SIGN IN</string>
+    <string name="reduce_waste_cook_smart">Reduce Waste. Cook Smart.</string>
+    <string name="full_name">Full Name:</string>
+    <string name="email_address">Email Address:</string>
+    <string name="confirm_password">Confirm Password:</string>
+    <string name="password">Password:</string>
+    <string name="logo_image">logo image</string>
+    <string name="pantry_pal">PantryPal</string>
 </resources>
