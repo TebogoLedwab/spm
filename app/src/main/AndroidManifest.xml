@@ -23,6 +23,7 @@
 
         <activity android:name=".authentication.SignUp" />
         <activity android:name=".pages.Pantry" />
+        <activity android:name=".pages.AddIngredients" />
 
 
 

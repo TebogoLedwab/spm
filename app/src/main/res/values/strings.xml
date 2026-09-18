@@ -31,4 +31,15 @@
     <string name="grain">Grains</string>
     <string name="_l_kg">1 Kg</string>
     <string name="rice">Rice</string>
+    <string name="go_back">Go back</string>
+    <string name="add_ingredient">Add Ingredient</string>
+    <string name="ingredient_name">Ingredient Name</string>
+    <string name="quantity">Quantity</string>
+    <string name="unit">Unit</string>
+    <string name="category">Category</string>
+    <string name="please_select_a_future_date">Please select a future date</string>
+    <string name="expiry_date">Expiry Date</string>
+    <string name="select_date">Select date</string>
+    <string name="save">Save</string>
+    <string name="delete">Delete</string>
 </resources>
