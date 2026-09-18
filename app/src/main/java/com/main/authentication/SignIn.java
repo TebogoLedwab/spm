@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 import com.main.R;
+import com.main.pages.Pantry;
 
 public class SignIn extends AppCompatActivity {
     @Override
@@ -21,7 +22,7 @@ public class SignIn extends AppCompatActivity {
         });
 
         signIn.setOnClickListener(v -> {
-            Intent intent = new Intent(SignIn.this, SignIn.class);
+            Intent intent = new Intent(SignIn.this, Pantry.class);
             startActivity(intent);
         });
     }
