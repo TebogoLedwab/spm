@@ -104,9 +104,9 @@
 
     <include
             android:id="@+id/layout_unit_dropdown"
-            layout="@layout/view_custom_dropdown"
+            layout="@layout/unit_dropdown"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="20dp"
             app:layout_constraintBottom_toBottomOf="@+id/et_quantity"
@@ -127,11 +127,11 @@
 
     <include
             android:id="@+id/layout_category_dropdown"
-            layout="@layout/view_custom_dropdown"
+            layout="@layout/category_dropdown"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@+id/lbl_category" />
 
     <TextView
@@ -146,21 +146,13 @@
             android:labelFor="@id/et_expiry_date"
             app:layout_constraintTop_toBottomOf="@+id/layout_category_dropdown" />
 
-    <EditText
+    <include
             android:id="@+id/et_expiry_date"
+            layout="@layout/date_picker"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="5dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="18dp"
             android:layout_marginEnd="18dp"
-            android:autofillHints=""
-            android:background="@drawable/edit_text_border"
-            android:clickable="true"
-            android:focusable="false"
-            android:inputType="datetime"
-            android:hint="@string/select_date"
-            android:paddingHorizontal="12dp"
-            android:textColor="#333333"
             app:layout_constraintTop_toBottomOf="@id/lbl_expiry_date" />
 
     <TextView

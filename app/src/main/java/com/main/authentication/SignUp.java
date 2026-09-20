@@ -17,7 +17,7 @@ import com.main.R;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.main.utils.SnackBarUtil.snackbar;
+import static com.main.helper.SnackBarHelper.snackbar;
 
 public class SignUp extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
@@ -52,50 +52,11 @@ public class SignUp extends AppCompatActivity {
             String password = passwordInput.getText().toString();
             String passwordConfirmation = passwordConfirmationInput.getText().toString();
 
-            // Run extracted validation method
-            if (validateInputs(fullNameInput, emailInput, passwordInput, passwordConfirmationInput,
+            if (isValidInputs(fullNameInput, emailInput, passwordInput, passwordConfirmationInput,
                     fullName, email, password, passwordConfirmation)) {
                 registerNewUser(email, password, fullName);
             }
         });
-    }
-
-    /**
-     * Validates form inputs and updates UI errors dynamically.
-     * Returns true if all fields are valid, false otherwise.
-     */
-    private boolean validateInputs(EditText fullNameInput, EditText emailInput, EditText passwordInput,
-                                   EditText passwordConfirmationInput, String fullName, String email,
-                                   String password, String passwordConfirmation) {
-        if (fullName.isEmpty()) {
-            fullNameInput.setError("Full name is required");
-            return false;
-        }
-        if (email.isEmpty()) {
-            emailInput.setError("Email is required");
-            return false;
-        }
-        if (email.contains(" ") || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailInput.setError("Provide a valid email address");
-            return false;
-        }
-        if (password.isEmpty()) {
-            passwordInput.setError("Password is required");
-            return false;
-        }
-        if (password.length() < 6) {
-            passwordInput.setError("Password must be at least 6 characters");
-            return false;
-        }
-        if (passwordConfirmation.isEmpty()) {
-            passwordConfirmationInput.setError("Password confirmation is required");
-            return false;
-        }
-        if (!passwordConfirmation.equals(password)) {
-            passwordConfirmationInput.setError("Passwords don't match");
-            return false;
-        }
-        return true;
     }
 
     private void registerNewUser(String email, String password, String displayName) {
@@ -134,5 +95,43 @@ public class SignUp extends AppCompatActivity {
                     }, 2000); // 2-second delay
                 })
                 .addOnFailureListener(e -> snackbar(this, e.getMessage(), false));
+    }
+
+    /**
+     * Validates form inputs and updates UI errors dynamically.
+     * Returns true if all fields are valid, false otherwise.
+     */
+    private boolean isValidInputs(EditText fullNameInput, EditText emailInput, EditText passwordInput,
+                                   EditText passwordConfirmationInput, String fullName, String email,
+                                   String password, String passwordConfirmation) {
+        if (fullName.isEmpty()) {
+            fullNameInput.setError("Full name is required");
+            return false;
+        }
+        if (email.isEmpty()) {
+            emailInput.setError("Email is required");
+            return false;
+        }
+        if (email.contains(" ") || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailInput.setError("Provide a valid email address");
+            return false;
+        }
+        if (password.isEmpty()) {
+            passwordInput.setError("Password is required");
+            return false;
+        }
+        if (password.length() < 6) {
+            passwordInput.setError("Password must be at least 6 characters");
+            return false;
+        }
+        if (passwordConfirmation.isEmpty()) {
+            passwordConfirmationInput.setError("Password confirmation is required");
+            return false;
+        }
+        if (!passwordConfirmation.equals(password)) {
+            passwordConfirmationInput.setError("Passwords don't match");
+            return false;
+        }
+        return true;
     }
 }

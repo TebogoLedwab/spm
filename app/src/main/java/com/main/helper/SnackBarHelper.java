@@ -1,4 +1,4 @@
-package com.main.utils;
+package com.main.helper;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import com.google.android.material.snackbar.Snackbar;
 
-public final class SnackBarUtil {
+public final class SnackBarHelper {
 
     private final static int DEFAULT_SUCCESS_COLOR = 0xFF4CAF50;
     private final static int  DEFAULT_FAILED_COLOR = 0xFFF44336;
