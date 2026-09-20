@@ -42,4 +42,10 @@
     <string name="select_date">Select date</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+    <string name="recipes_for_you">Recipes For You</string>
+    <string name="based_on_your_pantry_items">Based on your pantry items</string>
+    <string name="omlette">Omlette</string>
+    <string name="tomato_amp_cheese_omelette"><![CDATA[Tomato & Cheese Omelette]]></string>
+    <string name="_15_min">🕒 15 min</string>
+    <string name="_4_4_ingredients_available">✓ 4/4 ingredients available</string>
 </resources>
