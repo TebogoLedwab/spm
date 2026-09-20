@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- FIXED: Added required internet permissions for Google/Firebase authentication -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <!-- FIXED: Added package visibility query so your app can see Google Play Services (Required for Android 11+) -->
+    <queries>
+        <package android:name="com.google.android.gms" />
+    </queries>
+
     <application
             android:allowBackup="true"
             android:fullBackupContent="@xml/backup_rules"

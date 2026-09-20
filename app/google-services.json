@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "814852665851",
+    "project_id": "spm-401802001",
+    "storage_bucket": "spm-401802001.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814852665851:android:37bb7ef08bbea900cb9b5e",
+        "android_client_info": {
+          "package_name": "com.main"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCX6aym44ZxbV_2fXiKC2YPy8ec9YQ4XIo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
