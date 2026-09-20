@@ -48,6 +48,7 @@
     <string name="tomato_amp_cheese_omelette"><![CDATA[Tomato & Cheese Omelette]]></string>
     <string name="_15_min">🕒 15 min</string>
     <string name="_4_4_ingredients_available">✓ 4/4 ingredients available</string>
+    <string name="already_have_an_account_signing">Already have an account ? Signing</string>
     <string-array name="category_dropdown_items">
         <item>Produce</item>
         <item>Grains</item>

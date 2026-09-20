@@ -141,7 +141,7 @@
             android:layout_width="0dp"
             android:layout_height="60dp"
             android:layout_marginTop="10dp"
-            android:text="@string/sign_in"
+            android:text="@string/already_have_an_account_signing"
             android:textColor="#FFFFFF"
             android:backgroundTint="@color/primary"
             app:layout_constraintTop_toBottomOf="@+id/confirm_password_form"
@@ -153,12 +153,12 @@
             android:id="@+id/signup"
             android:layout_width="0dp"
             android:layout_height="60dp"
-            android:layout_marginTop="2dp"
             android:text="@string/sign_up"
             android:textColor="#FFFFFF"
             android:backgroundTint="@color/primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.0"/>
+            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="1.0"
+            android:layout_marginBottom="80dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
