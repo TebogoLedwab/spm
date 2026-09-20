@@ -5,14 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import androidx.appcompat.app.AppCompatActivity;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,14 +17,12 @@ import com.main.R;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.main.utils.SnackBarUtil.snackbar;
+
 public class SignUp extends AppCompatActivity {
     private static final String TAG = "RegisterActivity";
     private FirebaseAuth firebaseAuth;
     private FirebaseFirestore firebaseFirestore;
-
-    private final static int DEFAULT_SUCCESS_COLOR = 0xFF4CAF50;
-    private final static int  DEFAULT_FAILED_COLOR = 0xFFF44336;
-    private final static int  DEFAULT_FONT_COLOR = 0xFFFFFFFF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +110,7 @@ public class SignUp extends AppCompatActivity {
                     } else {
                         Log.w(TAG, "createUserWithEmail:failure", task.getException());
                         String error = task.getException() != null ? task.getException().getMessage() : "Authentication Failed";
-                        showTopNotification(error, false);
+                        snackbar(this, error, false);
                     }
                 });
     }
@@ -131,7 +124,7 @@ public class SignUp extends AppCompatActivity {
         firebaseFirestore.collection("users").document(uid)
                 .set(userProfile)
                 .addOnSuccessListener(v -> {
-                    showTopNotification("Registration Successful!", true);
+                    snackbar(this, "Registration Successful!", true);
 
                     // Delay redirect until the user has time to actually read the success message
                     new Handler(Looper.getMainLooper()).postDelayed(() -> {
@@ -140,27 +133,6 @@ public class SignUp extends AppCompatActivity {
                         finish();
                     }, 2000); // 2-second delay
                 })
-                .addOnFailureListener(e -> showTopNotification(e.getMessage(), false));
-    }
-
-    private void showTopNotification(String message, boolean isSuccess) {
-        View rootView = findViewById(android.R.id.content);
-        if (rootView == null) return;
-
-        Snackbar snackbar = Snackbar.make(rootView, message, Snackbar.LENGTH_LONG)
-                .setBackgroundTint(isSuccess ? DEFAULT_SUCCESS_COLOR : DEFAULT_FAILED_COLOR)
-                .setTextColor(DEFAULT_FONT_COLOR);
-
-        View snackbarView = snackbar.getView();
-        ViewGroup.LayoutParams lp = snackbarView.getLayoutParams();
-
-        if (lp instanceof FrameLayout.LayoutParams) {
-            FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) lp;
-            params.gravity = Gravity.TOP;
-            params.topMargin = 120;
-            snackbarView.setLayoutParams(params);
-        }
-
-        snackbar.show();
+                .addOnFailureListener(e -> snackbar(this, e.getMessage(), false));
     }
 }
