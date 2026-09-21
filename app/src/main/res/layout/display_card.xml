@@ -43,6 +43,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/item_name" />
 
         <TextView
+                android:id="@+id/item_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/unit_"
+                android:textColor="@color/secondary"
+                android:textSize="14sp"
+                app:layout_constraintBaseline_toBaselineOf="@+id/item_quantity"
+                app:layout_constraintStart_toEndOf="@+id/item_quantity" />
+
+        <TextView
                 android:id="@+id/item_tag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -54,7 +65,7 @@
                 android:textColor="#4F378B"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="@+id/item_quantity"
-                app:layout_constraintStart_toEndOf="@+id/item_quantity"
+                app:layout_constraintStart_toEndOf="@+id/item_unit"
                 app:layout_constraintTop_toTopOf="@+id/item_quantity" />
 
         <TextView

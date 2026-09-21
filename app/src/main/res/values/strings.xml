@@ -15,7 +15,8 @@
     <string name="my_pantry">My Pantry</string>
     <string name="search_item">Search item</string>
     <string name="milk">Milk</string>
-    <string name="_1_l">1 L</string>
+    <string name="_1_l">1</string>
+    <string name="unit_">L</string>
     <string name="dairy">Dairy</string>
     <string name="expiring_soon">EXPIRING SOON</string>
     <string name="add_new_item">Add new item</string>
@@ -44,7 +45,7 @@
     <string name="delete">Delete</string>
     <string name="recipes_for_you">Recipes For You</string>
     <string name="based_on_your_pantry_items">Based on your pantry items</string>
-    <string name="omlette">Omlette</string>
+    <string name="omlette">Omelette</string>
     <string name="tomato_amp_cheese_omelette"><![CDATA[Tomato & Cheese Omelette]]></string>
     <string name="_15_min">🕒 15 min</string>
     <string name="_4_4_ingredients_available">✓ 4/4 ingredients available</string>
@@ -57,7 +58,7 @@
     </string-array>
     <string-array name="unit_dropdown_items">
         <item>Pcs</item>
-        <item>Litre(s)</item>
+        <item>L</item>
         <item>Kgs</item>
     </string-array>
 </resources>

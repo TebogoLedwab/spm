@@ -17,6 +17,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.main.R;
 import com.main.models.Ingredient;
@@ -61,9 +62,15 @@ public class Pantry extends AppCompatActivity {
             return false;
         });
 
-        loadPantryData();
+        //loadPantryData();
     }
 
+    // Reload whenever we come back (e.g. after adding/editing an ingredient)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadPantryData();
+    }
     private void loadPantryData() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user == null) {
@@ -82,18 +89,19 @@ public class Pantry extends AppCompatActivity {
                         return;
                     }
 
-                    // Prevent view duplication on subsequent data refreshes
-                    parentContainer.removeAllViews();
-
-                    // Map documents to model objects, filter null entries, and loop
-                    task.getResult().getDocuments().stream()
-                            .map(d -> d.toObject(Ingredient.class))
-                            .filter(Objects::nonNull)
-                            .forEach(this::createIngredientCard);
+                    // Loop over documents so each card keeps its document ID
+                    for (DocumentSnapshot doc : task.getResult().getDocuments()) {
+                        Ingredient ingredient = doc.toObject(Ingredient.class);
+                        if (ingredient != null) {
+                            createIngredientCard(ingredient, doc.getId());
+                        }
+                    }
                 });
+        // Add this import: com.google.firebase.firestore.DocumentSnapshot
+        parentContainer.removeAllViews();
     }
 
-    private void createIngredientCard(Ingredient ingredient) {
+    private void createIngredientCard(Ingredient ingredient, String documentId) {
         // Inflate custom card layout
         View cardView = inflater.inflate(R.layout.display_card, parentContainer, false);
 
@@ -102,10 +110,12 @@ public class Pantry extends AppCompatActivity {
         TextView tvQuantity = cardView.findViewById(R.id.item_quantity);
         TextView tvTag = cardView.findViewById(R.id.item_tag);
         TextView tvAlert = cardView.findViewById(R.id.item_alert);
+        TextView tvUnit = cardView.findViewById(R.id.item_unit);
 
         // Populate layout text fields
         tvName.setText(ingredient.getName());
         tvQuantity.setText(String.valueOf(ingredient.getQuantity()));
+        tvUnit.setText(ingredient.getUnit());
         tvTag.setText(ingredient.getCategory());
 
         try {
@@ -124,9 +134,23 @@ public class Pantry extends AppCompatActivity {
         }
 
         // Row interaction click hook
-        cardView.setOnClickListener(v -> snackbar(this, "Clicked: " + ingredient.getName(), true));
+        // Open the same screen as the FAB, pre-filled for editing
+        cardView.setOnClickListener(v -> {
+            Intent intent = new Intent(Pantry.this, AddIngredients.class);
+            intent.putExtra(AddIngredients.EXTRA_ID, documentId);
+            intent.putExtra(AddIngredients.EXTRA_NAME, ingredient.getName());
+            intent.putExtra(AddIngredients.EXTRA_QUANTITY,
+                    ingredient.getQuantity() != null ? ingredient.getQuantity() : 0L);
+            intent.putExtra(AddIngredients.EXTRA_UNIT, ingredient.getUnit());
+            intent.putExtra(AddIngredients.EXTRA_CATEGORY, ingredient.getCategory());
+            intent.putExtra(AddIngredients.EXTRA_EXPIRY, ingredient.getExpiryDate());
+            startActivity(intent);
+        });
+        //cardView.setOnClickListener(v -> snackbar(this, "Clicked: " + ingredient.getName(), true));
 
         // Mount completed view to root container
         parentContainer.addView(cardView);
     }
+
+
 }
